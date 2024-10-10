@@ -11,7 +11,6 @@ import java.util.Collection;
 @Entity
 @Data
 @RequiredArgsConstructor
-@Builder
 public class Projection implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

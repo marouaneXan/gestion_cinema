@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Data @RequiredArgsConstructor @Builder
+@Data @RequiredArgsConstructor
 public class Seance implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
