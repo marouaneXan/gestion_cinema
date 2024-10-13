@@ -1,7 +1,6 @@
-package org.example.gestion_cinema.dao;
+package org.example.gestion_cinema.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
