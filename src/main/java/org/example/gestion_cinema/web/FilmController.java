@@ -33,7 +33,7 @@ public class FilmController {
     }
     @PostMapping(path="/films/addFilm/{category_id}",consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Film> getFilmById(@RequestBody Film film, HttpServletRequest request,@PathVariable Long category_id) throws Exception {
+    public ResponseEntity<Film> addNewFilm(@RequestBody Film film, HttpServletRequest request,@PathVariable Long category_id) throws Exception {
         Film newFilm = filmService.addFilm(film,category_id);
         System.out.println("category is: "+category_id);
         if(newFilm!=null && newFilm.getId() != null){
