@@ -1,5 +1,6 @@
 package org.example.gestion_cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,10 @@ public class Category implements Serializable {
     @Column(length = 75)
     private String name;
     @OneToMany(mappedBy = "category")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Film> films;
+    @Override
+    public String toString() {
+        return "Category{id=" + id + ", name='" + name + '\'' + '}';
+    }
 }
