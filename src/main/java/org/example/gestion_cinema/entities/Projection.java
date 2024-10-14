@@ -1,12 +1,12 @@
-package org.example.gestion_cinema.dao;
+package org.example.gestion_cinema.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Data
@@ -14,7 +14,7 @@ import java.util.Collection;
 public class Projection implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double dateProjection;
+    private Date dateProjection;
     private double prix;
     @ManyToOne
     private Salle salles;
