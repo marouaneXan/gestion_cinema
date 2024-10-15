@@ -24,7 +24,7 @@ public class Film implements Serializable {
     private Date dateSortie;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "films")
+    @OneToMany(mappedBy = "films",cascade = CascadeType.REMOVE)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Projection> projections;
 

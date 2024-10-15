@@ -1,8 +1,10 @@
 package org.example.gestion_cinema.web;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.gestion_cinema.entities.Film;
 import org.example.gestion_cinema.service.FilmService;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -44,6 +46,35 @@ public class FilmController {
             return ResponseEntity.created(location).body(newFilm);
         }else{
             throw new ServerException("Try Again :(");
+        }
+    }
+
+    @PutMapping(path="/films/{id}/category/{category_id}",consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateFilm(@RequestBody Film film, HttpServletRequest request, @PathVariable Long id, @PathVariable Long category_id) throws Exception {
+        Film newFilm = filmService.updateFilm(film,id,category_id);
+        try{
+            if(newFilm!=null){
+                return ResponseEntity.ok(newFilm);
+            }else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The film is not found or could not be updated");
+            }
+        }catch(EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while updating the film.");
+        }
+    }
+
+    @DeleteMapping(path = "/films/{id}")
+    public ResponseEntity<?> removeFilm(@PathVariable Long id,HttpServletRequest request){
+        try{
+            filmService.deleteFilm(id);
+            return ResponseEntity.ok("The film deleted successfully");
+        }catch(EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

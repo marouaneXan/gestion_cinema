@@ -41,4 +41,30 @@ public class FilmService {
         newFilm.setCategory(category);
         return filmRepository.save(newFilm);
     }
+
+    public Film updateFilm(Film newFilm,Long id,Long category_id){
+        double[] duree=new double[] {1,2,3,4};
+        Optional<Film> optionalFilm=filmRepository.findById(id);
+        if(optionalFilm.isEmpty()){
+            throw new EntityNotFoundException("Film not found with id " + id);
+        }
+        Film film=optionalFilm.get();
+        if(!film.getCategory().getId().equals(category_id)){
+            Category category = categoryRepository
+                .findById(category_id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found with id " + category_id));
+            film.setCategory(category);
+        }
+        film.setTitre(newFilm.getTitre());
+        film.setDuree(duree[new Random().nextInt(duree.length)]);
+        return filmRepository.save(film);
+    }
+    public void deleteFilm(Long id){
+        Optional<Film> filmOptional=filmRepository.findById(id);
+        if(filmOptional.isEmpty()){
+            throw new EntityNotFoundException("Film not found with id " + id);
+        }
+        Film film=filmOptional.get();
+        filmRepository.delete(film);
+    }
 }
