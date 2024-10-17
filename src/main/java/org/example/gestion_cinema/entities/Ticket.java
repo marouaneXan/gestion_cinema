@@ -20,6 +20,6 @@ public class Ticket implements Serializable {
     private boolean reservee;
     @ManyToOne
     private Place place;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Projection projection;
 }

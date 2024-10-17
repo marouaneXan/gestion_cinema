@@ -3,8 +3,6 @@ package org.example.gestion_cinema.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.example.gestion_cinema.entities.Salle;
-import org.example.gestion_cinema.entities.Ville;
 
 import java.io.Serializable;
 import java.util.Collection;

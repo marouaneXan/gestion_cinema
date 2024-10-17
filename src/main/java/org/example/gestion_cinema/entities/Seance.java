@@ -13,7 +13,7 @@ public class Seance implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date heureDebut;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="projection_id")
     private Projection projection;
 }

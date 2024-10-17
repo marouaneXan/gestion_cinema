@@ -18,9 +18,9 @@ public class Salle implements Serializable {
     private int nombre_places;
     @ManyToOne
     private Cinema cinema;
-    @OneToMany(mappedBy = "salle")
+    @OneToMany(mappedBy = "salle",cascade = CascadeType.ALL)
     private Collection<Place> places;
-    @OneToMany(mappedBy = "salles")
+    @OneToMany(mappedBy = "salles",cascade = CascadeType.ALL)
     private Collection<Projection> projections;
 
 }

@@ -17,6 +17,6 @@ public class Ville implements Serializable {
     private String name;
     private double longitude,latitude,altitude;
     private int nombre_salles;
-    @OneToMany(mappedBy = "ville")
+    @OneToMany(mappedBy = "ville",cascade = CascadeType.ALL)
     private Collection<Cinema> cinemas;
 }
