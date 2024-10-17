@@ -16,15 +16,15 @@ public class GestionCinemaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        iCinemaInit.initVilles();
-        iCinemaInit.initCinemas();
-        iCinemaInit.initSalles();
-        iCinemaInit.initPlace();
-        iCinemaInit.initCategories();
-        iCinemaInit.initFilms();
-        iCinemaInit.initSeance();
+//        iCinemaInit.initVilles();
+//        iCinemaInit.initCinemas();
+//        iCinemaInit.initSalles();
+//        iCinemaInit.initPlace();
+//        iCinemaInit.initCategories();
+//        iCinemaInit.initFilms();
+//        iCinemaInit.initSeance();
         iCinemaInit.initProjections();
-        iCinemaInit.initTickets();
+//        iCinemaInit.initTickets();
 
     }
 }

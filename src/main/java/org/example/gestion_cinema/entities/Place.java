@@ -17,6 +17,6 @@ public class Place {
     private double longitude,latitude,altitude;
     @ManyToOne
     private Salle salle;
-    @OneToMany(mappedBy = "place",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "place")
     private Collection<Ticket> tickets;
 }

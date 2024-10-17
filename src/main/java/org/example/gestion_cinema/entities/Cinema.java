@@ -16,7 +16,7 @@ public class Cinema implements Serializable {
     private String name;
     private double longitude,latitude,altitude;
     private int nombre_salles;
-    @OneToMany(mappedBy = "cinema")
+    @OneToMany(mappedBy = "cinema",cascade = CascadeType.REMOVE)
     private Collection<Salle> salles;
     @ManyToOne
     private Ville ville;

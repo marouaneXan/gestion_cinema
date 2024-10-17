@@ -8,6 +8,7 @@ import org.example.gestion_cinema.entities.Category;
 import org.example.gestion_cinema.entities.Film;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -60,11 +61,14 @@ public class FilmService {
         return filmRepository.save(film);
     }
     public void deleteFilm(Long id){
-        Optional<Film> filmOptional=filmRepository.findById(id);
-        if(filmOptional.isEmpty()){
+//        Optional<Film> filmOptional=filmRepository.findById(id);
+//        if(filmOptional.isEmpty()){
+//            throw new EntityNotFoundException("Film not found with id " + id);
+//        }
+//        Film film=filmOptional.get();
+//        filmRepository.delete(film);
+        filmRepository.findById(id).ifPresentOrElse(filmRepository::delete, ()->{
             throw new EntityNotFoundException("Film not found with id " + id);
-        }
-        Film film=filmOptional.get();
-        filmRepository.delete(film);
+        });
     }
 }

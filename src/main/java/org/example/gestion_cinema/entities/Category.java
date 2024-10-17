@@ -19,7 +19,7 @@ public class Category implements Serializable {
     private Long id;
     @Column(length = 75)
     private String name;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",cascade = CascadeType.REMOVE)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Film> films;
 }

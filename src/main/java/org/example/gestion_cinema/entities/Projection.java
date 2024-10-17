@@ -22,6 +22,6 @@ public class Projection implements Serializable {
     private Film films;
     @OneToOne(mappedBy = "projection")
     private Seance seance;
-    @OneToMany(mappedBy = "projection")
+    @OneToMany(mappedBy = "projection",cascade = CascadeType.REMOVE)
     private Collection<Ticket> tickets;
 }
