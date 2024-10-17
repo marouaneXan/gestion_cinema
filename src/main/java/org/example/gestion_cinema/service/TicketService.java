@@ -10,6 +10,9 @@ import org.example.gestion_cinema.entities.Projection;
 import org.example.gestion_cinema.entities.Ticket;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 @Transactional
 public class TicketService {
@@ -22,15 +25,15 @@ public class TicketService {
         this.placeRepository = placeRepository;
     }
 
-    public Ticket payerTicket(Ticket newTicket,Long projection_id,Long place_id) {
-        Projection projection=projectionRepository.findById(projection_id).orElseThrow(EntityNotFoundException::new);
-        Place place=placeRepository.findById(place_id).orElseThrow(()-> new EntityNotFoundException("Place not found"));
-        Ticket ticket=new Ticket();
-        ticket.setProjection(projection);
-        ticket.setPlace(place);
-        ticket.setNomClient(newTicket.getNomClient());
-        ticket.setPrix(newTicket.getPrix());
-        ticketRepository.save(ticket);
-        return ticket;
+    public void payerTicket(List<Long> tickets_ids) {
+        tickets_ids.forEach(
+            ticket_id->{
+                Ticket ticket=ticketRepository
+                    .findById(ticket_id)
+                    .orElseThrow(()->new EntityNotFoundException("ticket not found"));
+                ticket.setReservee(true);
+                ticketRepository.save(ticket);
+            }
+        );
     }
 }

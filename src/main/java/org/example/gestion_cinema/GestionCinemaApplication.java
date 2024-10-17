@@ -23,8 +23,8 @@ public class GestionCinemaApplication implements CommandLineRunner {
 //        iCinemaInit.initCategories();
 //        iCinemaInit.initFilms();
 //        iCinemaInit.initSeance();
-        iCinemaInit.initProjections();
-//        iCinemaInit.initTickets();
+   //     iCinemaInit.initProjections();
+//     iCinemaInit.initTickets();
 
     }
 }
