@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -84,6 +85,11 @@ public class FilmController {
         return (CsrfToken) request.getAttribute("_csrf");
     }
 
+
+    @GetMapping("/auth")
+    public Authentication authentication(Authentication authentication){
+        return authentication;
+    }
 
 
     @GetMapping("/")
