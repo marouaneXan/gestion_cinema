@@ -1,5 +1,6 @@
 package org.example.gestion_cinema.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class Cinema implements Serializable {
     private double longitude,latitude,altitude;
     private int nombre_salles;
     @OneToMany(mappedBy = "cinema",cascade = CascadeType.REMOVE)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Salle> salles;
     @ManyToOne
     private Ville ville;

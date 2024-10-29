@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(r->r.requestMatchers("/swagger-ui.html").permitAll())
-                .authorizeHttpRequests(r->r.requestMatchers("/films").hasAnyAuthority("ADMIN"))
+                .authorizeHttpRequests(r->r.requestMatchers("/**").hasAnyAuthority("ADMIN","USER"))
                 .authorizeHttpRequests(r->r.anyRequest().authenticated())
                 .oauth2ResourceServer(auth->auth.jwt(jwt->jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .build();
@@ -34,13 +34,15 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource()  {
-        CorsConfiguration corsConfiguration=new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Specify your frontend URL
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
         corsConfiguration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",corsConfiguration);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
     }
+
 }

@@ -27,15 +27,15 @@ public class GestionCinemaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        iCinemaInit.initVilles();
-//        iCinemaInit.initCinemas();
-//        iCinemaInit.initSalles();
-//        iCinemaInit.initPlace();
-//        iCinemaInit.initCategories();
-//        iCinemaInit.initFilms();
-//        iCinemaInit.initSeance();
-   //     iCinemaInit.initProjections();
-//     iCinemaInit.initTickets();
+        iCinemaInit.initVilles();
+        iCinemaInit.initCinemas();
+        iCinemaInit.initSalles();
+        iCinemaInit.initPlace();
+        iCinemaInit.initCategories();
+        iCinemaInit.initFilms();
+        iCinemaInit.initProjections();
+        iCinemaInit.initSeance();
+        iCinemaInit.initTickets();
         //accountService.addRole(new AppRole(null,"USER"));
         //accountService.addRole(new AppRole(null,"ADMIN"));
         //accountService.addRole(new AppRole(null,"CUSTOMER_MANAGER"));
