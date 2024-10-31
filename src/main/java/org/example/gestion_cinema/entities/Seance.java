@@ -12,8 +12,7 @@ import java.util.Date;
 public class Seance implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date heureDebut;
-    @OneToOne
-    @JoinColumn(name="projection_id")
-    private Projection projection;
+
 }

@@ -30,4 +30,9 @@ public class Film implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Projection> projections;
 
+    @Override
+    public String toString() {
+        return "Film{id=" + id + ", title='" + titre + "'}"; // Avoid printing collections directly
+    }
+
 }

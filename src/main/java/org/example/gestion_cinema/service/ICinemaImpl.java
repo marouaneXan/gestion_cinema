@@ -100,42 +100,30 @@ public class ICinemaImpl implements ICinemaInit{
 
     @Override
     public void initProjections() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date projectionDate;
-        try {
-            projectionDate = dateFormat.parse("2024-10-12");
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return;
-        }
-        villeRepository.findAll().forEach(
-            ville->{
-                ville.getCinemas().forEach(
-                    cinema->{
-                        cinema.getSalles().forEach(
-                            salle->{
-                                filmRepository.findAll().forEach(
-                                    film->{
-                                        seanceRepository.findAll().forEach(
-                                            seance -> {
-                                                Projection projection=new Projection();
-                                                projection.setDateProjection(projectionDate);
-                                                projection.setPrix(10+(int)(Math.random()*7));
-                                                projection.setSalles(salle);
-                                                projection.setFilms(film);
-                                                projection.setSeance(seance);
-                                                projectionRepository.save(projection);
-                                            }
-                                        );
-                                    }
-                                );
-                            }
-                        );
-                    }
-                );
-            }
-        );
+        System.out.println("Projection function...");
+
+        villeRepository.findAll().forEach(ville -> {
+            ville.getCinemas().forEach(cinema -> {
+                cinema.getSalles().forEach(salle -> {
+                    filmRepository.findAll().forEach(film -> {
+                        seanceRepository.findAll().forEach(seance -> {
+                            // The save operation
+                            Projection projection = new Projection();
+                            projection.setDateProjection(new Date());
+                            projection.setFilms(film);
+                            projection.setPrix(10 + (int)(Math.random() * 7));
+                            projection.setSalles(salle);
+                            projection.setSeance(seance);
+                            projectionRepository.save(projection);
+                            System.out.println(projection);
+                        });
+                    });
+                });
+            });
+        });
+
     }
+
 
     @Override
     public void initTickets() {

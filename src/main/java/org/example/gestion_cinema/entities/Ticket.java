@@ -22,4 +22,17 @@ public class Ticket implements Serializable {
     private Place place;
     @ManyToOne
     private Projection projection;
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+            "id=" + id +
+            ", nomClient='" + nomClient + '\'' +
+            ", prix=" + prix +
+            ", codePayment=" + codePayment +
+            ", reservee=" + reservee +
+            ", place=" + place +
+            ", projection=" + projection +
+            '}';
+    }
 }

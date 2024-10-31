@@ -20,8 +20,17 @@ public class Projection implements Serializable {
     private Salle salles;
     @ManyToOne
     private Film films;
-    @OneToOne(mappedBy = "projection")
+    @ManyToOne
     private Seance seance;
     @OneToMany(mappedBy = "projection",cascade = CascadeType.REMOVE)
     private Collection<Ticket> tickets;
+
+    @Override
+    public String toString() {
+        return "Projection{id=" + id +
+            ", dateProjection=" + dateProjection +
+            ", prix=" + prix +
+            ", salleId=" + (salles != null ? salles.getId() : "null") +
+            ", filmId=" + (films != null ? films.getId() : "null") + '}';
+    }
 }

@@ -22,4 +22,10 @@ public class Cinema implements Serializable {
     private Collection<Salle> salles;
     @ManyToOne
     private Ville ville;
+
+    @Override
+    public String toString() {
+        return "Cinema{id=" + id + ", name='" + name + '\'' +
+            ", sallesCount=" + (salles != null ? salles.size() : 0) + '}'; // Avoid printing Salles directly
+    }
 }

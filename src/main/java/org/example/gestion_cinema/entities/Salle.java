@@ -20,6 +20,12 @@ public class Salle implements Serializable {
     private Cinema cinema;
     @OneToMany(mappedBy = "salle")
     private Collection<Place> places;
+
+    @Override
+    public String toString() {
+        return "Salle{id=" + id + ", name='" + name + '\'' + '}';
+    }
+
     @OneToMany(mappedBy = "salles")
     private Collection<Projection> projections;
 
